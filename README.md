@@ -3,8 +3,11 @@
 By: Kian F.
 
 ## Requirements
+
+Objective: Building an Object-Oriented program allowing 2 players to play the tic-tac-toe game on screen.
+
 **About the game**
-Tic-Tac-Toe is a 2-player game on a 3x3 game board, in which players take turns to occupy the spaces on the game board in such a way to complete a row, column, or a diagonal stright line to win.
+Tic-tac-toe is a 2-player game on a 3x3 game board, in which players take turns to occupy the spaces on the game board in such a way to complete a row, column, or a diagonal stright line to win.
 
 To track which space belongs to which player, one player uses X and the other uses O. The first player is chosen by a random draw.
 

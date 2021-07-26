@@ -8,7 +8,7 @@
 
 class Player:
     def __init__(self, number, marker):
-        self.marker = marker
+        self.marker = marker  # X/O
         self.score = 0
         self.number = number
         self.name = ''
