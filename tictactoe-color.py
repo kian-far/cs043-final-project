@@ -6,6 +6,7 @@
 '''
 
 import random
+from termcolor import colored
 from player import Player
 
 
@@ -14,7 +15,7 @@ class TicTacToe:
     def __init__(self):
         # show welcome message
         print()
-        print('Welcome to Tic Tac Toe!')
+        print(colored('Welcome to Tic Tac Toe!', attrs=['reverse']))
 
         # prepare board
         self.board = []
@@ -24,12 +25,12 @@ class TicTacToe:
         player1 = Player(1, 'X')
         player2 = Player(2, 'O')
         self.players = [player1, player2]
-        print('{} plays {}'.format(self.players[0].name, self.players[0].marker))
-        print('{} plays {}'.format(self.players[1].name, self.players[1].marker))
+        print(colored('{} plays {}'.format(self.players[0].name, self.players[0].marker), 'red'))
+        print(colored('{} plays {}'.format(self.players[1].name, self.players[1].marker), 'red'))
 
         # randomly chose first player
         self.nextPlayer = random.randint(0, 1)
-        print("{} starts first\n".format(self.players[self.nextPlayer].name))
+        print(colored("{} starts first\n".format(self.players[self.nextPlayer].name), 'green'))
 
     def __repr__(self):
         return "<TicTacToe By Kian F.>"
@@ -53,14 +54,14 @@ class TicTacToe:
         if self.__isWinner(player.marker):
             player.increaseScore()
             self.__drawBoard()
-            print('Hooray! The winner is {}!!'.format(player.name))
+            print(colored('Hooray! The winner is {}!!'.format(player.name), 'red', attrs=['reverse', 'bold']))
             self.__showScores()
             print()
             return False
         else:
             if self.__isBoardFull():
                 self.__drawBoard()
-                print('The game is a tie!')
+                print(colored('The game is a tie!', 'yellow', attrs=['reverse']))
                 self.__showScores()
                 return False
             else:
@@ -97,14 +98,18 @@ class TicTacToe:
     def __mark(self, position):
         # displays a symbol in the board. If the position is not filled, it shows position number
         letter = self.board[position]
-        print(letter, end='')
+        color = 'yellow' if letter == 'X' else 'cyan'
+        if letter == ' ':
+            print(colored(position, 'blue'), end='')
+        else:
+            print(colored(letter, color, attrs=['reverse', 'bold']), end='')
 
     def __getPlayerMove(self):
         # Let the player type in his move.
         move = ' '
         player = self.players[self.nextPlayer]
         while move not in '1 2 3 4 5 6 7 8 9'.split() or not self.board[int(move)] == ' ':
-            print(' {} '.format(player.name), end='')
+            print(colored(' {} '.format(player.name), attrs=['reverse']), end='')
             move = input(' what is your next move? (1-9): ')
         return int(move)
 
@@ -129,7 +134,7 @@ class TicTacToe:
 
     def __showScores(self):
         # this functions shows 2 players' scores
-        print('Scores:')
+        print(colored('Scores:', 'magenta'))
         for player in self.players:
             print("{}'s score: {}".format(player.name, player.score))
         print()
